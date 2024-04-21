@@ -1,11 +1,11 @@
 import cors from 'cors';
 import express, { urlencoded } from 'express';
 import morgan from 'morgan';
-import router from './router';
-import { protect } from './modules/auth';
 import { createNewUser, signIn } from './handlers/user';
-import { validateRequestBody } from './utilities/validateRequestBody';
+import { protect } from './modules/auth';
+import router from './router';
 import { userSchema } from './schema/userSchema';
+import { validateRequestBody } from './utilities/validateRequestBody';
 
 const app = express();
 
