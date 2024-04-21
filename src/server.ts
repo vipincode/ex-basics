@@ -3,6 +3,9 @@ import express, { urlencoded } from 'express';
 import morgan from 'morgan';
 import router from './router';
 import { protect } from './modules/auth';
+import { createNewUser, signIn } from './handlers/user';
+import { validateRequestBody } from './utilities/validateRequestBody';
+import { userSchema } from './schema/userSchema';
 
 const app = express();
 
@@ -19,5 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', protect, router);
+app.post('/user', validateRequestBody(userSchema), createNewUser);
+app.post('/sign-in', validateRequestBody(userSchema), signIn);
 
 export default app;
